@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { string } from 'prop-types';
+import { func, string } from 'prop-types';
 import { saveUser } from '../actions';
 
 class Login extends Component {
@@ -12,8 +12,9 @@ class Login extends Component {
 
   handleInput = ({ target: { name, value } }) => {
     this.setState(
-      { [name]: value},
-      () => this.setState({ disabled: this.verifyValidation() }));
+      { [name]: value },
+      () => this.setState({ disabled: this.verifyValidation() }),
+    );
   }
 
   verifyValidation = () => {
@@ -21,7 +22,7 @@ class Login extends Component {
     const { inputEmail, inputPassword } = this.state;
     return !(inputPassword.length >= MIN_LETTERS
       && inputEmail.includes('@')
-      && inputEmail.includes('.com'))
+      && inputEmail.includes('.com'));
   }
 
   handleClick = () => {
@@ -71,7 +72,7 @@ class Login extends Component {
             Entrar
           </button>
         </div>
-      </div>)
+      </div>);
   }
 }
 
@@ -81,6 +82,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Login.propTypes = {
   history: string.isRequired,
+  login: func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);
