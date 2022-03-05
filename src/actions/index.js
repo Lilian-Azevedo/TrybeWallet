@@ -1,5 +1,6 @@
 export const SAVE_USER = 'SAVE_USER';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 export const FETCH_CURRENCIES = 'FETCH_CURRENCIES';
 
 export const saveUser = (payload) => (
@@ -8,6 +9,10 @@ export const saveUser = (payload) => (
 
 export const addExpense = (payload) => (
   { type: ADD_EXPENSE, payload }
+);
+
+export const removeExpense = (payload) => (
+  { type: REMOVE_EXPENSE, payload }
 );
 
 export const fetchCurrencies = (payload) => (
