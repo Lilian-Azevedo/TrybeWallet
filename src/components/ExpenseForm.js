@@ -63,7 +63,7 @@ class ExpenseForm extends Component {
               onChange={ this.handleInput }
             >
               { currencies.map((item) => (
-                <option key={ item } value={ item }>{item}</option>
+                <option key={ item } data-testid={item} value={ item }>{item}</option>
               ))}
             </select>
           </label>
@@ -92,7 +92,7 @@ class ExpenseForm extends Component {
               value={ tag }
               onChange={ this.handleInput }
             >
-              <option value="Alimwntação">Alimentação</option>
+              <option value="Alimentação">Alimentação</option>
               <option value="Lazer">Lazer</option>
               <option value="Trabalho">Trabalho</option>
               <option value="Transporte">Transporte</option>
@@ -138,7 +138,7 @@ ExpenseForm.propTypes = {
   getCurrencies: func.isRequired,
   expenseInfo: func.isRequired,
   currencies: PropTypes.arrayOf(string).isRequired,
-  exchange: PropTypes.arrayOf(string).isRequired,
+  exchange:  PropTypes.objectOf(PropTypes.objectOf(string)).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);

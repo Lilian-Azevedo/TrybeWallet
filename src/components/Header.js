@@ -7,11 +7,12 @@ class Header extends Component {
   expensesTotal = () => {
     const { expenses } = this.props;
     if (expenses.length) {
-      const totalSum = expenses.reduce((acc, expense) => {
+      const totalSum = expenses.reduce((sum, expense) => {
         const { currency, value, exchangeRates } = expense;
         const valueQuotation = Number(exchangeRates[currency].ask);
-        acc += Number(value) * valueQuotation;
-        return acc;
+        const updatedValue = Number(value) * valueQuotation;
+        sum += updatedValue;
+        return sum;
       }, 0);
       return totalSum.toFixed(2);
     }
