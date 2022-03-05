@@ -1,27 +1,26 @@
-// Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-/* {
-    user: {
-        email: '',
-    },
-    wallet: {
-        currencies: [],
-        expenses: []
-    }
-} */
-/* import { SAVE_USER } from '../actions/index';
+import { ADD_EXPENSE, FETCH_CURRENCIES } from '../actions/index';
 
-const INITIAL_STATE = { email: '' }
+const INITIAL_STATE = {
+  currencies: [],
+  expenses: [],
+};
 
-const user = (state = INITIAL_STATE, action) => {
+const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case SAVE_USER:
+  case ADD_EXPENSE:
     return {
       ...state,
-      email: action.payload,
+      expenses: [...state.expenses, action.payload],
     };
+  case FETCH_CURRENCIES:
+    return ({
+      ...state,
+      currencies: Object.keys(action.payload),
+      exchange: action.payload,
+    });
   default:
     return state;
   }
 };
 
-export default user; */
+export default wallet;
