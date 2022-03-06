@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes, { func, string } from 'prop-types';
-import { removeExpense } from '../actions';
+import { removeExpense, editExpense } from '../actions';
 import '../styles/header.css';
 
 class WalletExpensesSaved extends Component {
   render() {
-    const { expenses, expenseForRemove } = this.props;
+    const { expenses, expenseForRemove, expenseForEdit } = this.props;
 
     return (
       <table>
@@ -30,19 +30,23 @@ class WalletExpensesSaved extends Component {
                 <td>{description}</td>
                 <td>{tag}</td>
                 <td>{method}</td>
-                <td>{value}</td>
+                <td>{Number(value).toFixed(2)}</td>
                 <td>{exchangeRates[currency].name}</td>
                 <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
-                {/* { exchangeRates[currency].ask.includes('.')
-                        ? <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
-                        : <td>{exchangeRates[currency].ask}.00</td>
-                        } */}
                 <td>
                   {(Number(exchangeRates[currency].ask)
                     * Number(value)).toFixed(2)}
                 </td>
                 <td>Real</td>
                 <td>
+                  <button
+                    id={ id }
+                    data-testid="edit-btn"
+                    type="button"
+                    onClick={ () => expenseForEdit(id) }
+                  >
+                    Editar
+                  </button>
                   <button
                     id={ id }
                     data-testid="delete-btn"
@@ -60,17 +64,21 @@ class WalletExpensesSaved extends Component {
   }
 }
 
+// fonte tabela: https://edrodrigues.com.br/blog/criando-tabelas-com-filtros-%E2%80%8B%E2%80%8Busando-react/
+
 const mapStateToProps = ({ wallet: { expenses } }) => ({
   expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   expenseForRemove: (id) => dispatch(removeExpense(id)),
+  expenseForEdit: (id) => dispatch(editExpense(id)),
 });
 
 WalletExpensesSaved.propTypes = {
   expenses: PropTypes.arrayOf(string).isRequired,
   expenseForRemove: func.isRequired,
+  expenseForEdit: func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletExpensesSaved);
