@@ -4,9 +4,9 @@ import { ADD_EXPENSE, REMOVE_EXPENSE, EDIT_EXPENSE,
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  updateExpenseEdited: false,
+  isEditingExpense: false,
   expenseForEdit: '',
-  editItemState: false,
+  hasClickedEdit: false,
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -24,14 +24,14 @@ const wallet = (state = INITIAL_STATE, action) => {
   case EDIT_EXPENSE:
     return {
       ...state,
-      updateExpenseEdited: true,
+      isEditingExpense: true,
       expenseForEdit: state.expenses[action.id],
-      editItemState: true,
+      hasClickedEdit: true,
     };
   case CHANGE_KEY:
     return {
       ...state,
-      editItemState: false,
+      hasClickedEdit: false,
     };
   case ADD_EDITED_EXPENSE:
     return {
@@ -40,7 +40,7 @@ const wallet = (state = INITIAL_STATE, action) => {
         if (expense.id === state.expenseForEdit.id) return action.payload;
         return expense;
       }),
-      updateExpenseEdited: false,
+      isEditingExpense: false,
     };
 
   case FETCH_CURRENCIES:

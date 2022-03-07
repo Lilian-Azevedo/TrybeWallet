@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addExpense, addEditedExpense, thunkWallet, changeKeyEdit } from '../actions';
 import ButtonsForm from './ButtonsForm';
+import SelectCompForm from './SelectCompForm';
 
 const INITIAL_STATE = {
   value: '',
@@ -46,11 +47,11 @@ class ExpenseForm extends Component {
     }
 
     render() {
-      const { value, currency, method, tag, description } = this.state;
-      const { currencies, updateExpenseEdited, editItemState,
+      const { value, description } = this.state;
+      const { isEditingExpense, hasClickedEdit,
         expenseForEdit, changedLocalState } = this.props;
 
-      if (editItemState) {
+      if (hasClickedEdit) {
         this.setState({
           value: expenseForEdit.value,
           currency: expenseForEdit.currency,
@@ -74,54 +75,8 @@ class ExpenseForm extends Component {
               onChange={ this.handleInput }
             />
           </label>
-
-          <label htmlFor="currency">
-            Moeda
-            <select
-              data-testid="currency-input"
-              id="currency"
-              name="currency"
-              value={ currency }
-              onChange={ this.handleInput }
-            >
-              { currencies.map((item) => (
-                <option key={ item } data-testid={ item } value={ item }>{item}</option>
-              ))}
-            </select>
-          </label>
-
-          <label htmlFor="method">
-            Método de pagamento
-            <select
-              data-testid="method-input"
-              id="method"
-              name="method"
-              value={ method }
-              onChange={ this.handleInput }
-            >
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
-            </select>
-          </label>
-
-          <label htmlFor="tag">
-            Categoria
-            <select
-              data-testid="tag-input"
-              id="tag"
-              name="tag"
-              value={ tag }
-              onChange={ this.handleInput }
-            >
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Trabalho">Trabalho</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saúde">Saúde</option>
-            </select>
-          </label>
-
+          <SelectCompForm handleInput={ this.handleInput } />
+          
           <label htmlFor="description">
             Descrição
             <textarea
@@ -137,7 +92,7 @@ class ExpenseForm extends Component {
           <ButtonsForm
             onSaveExpense={ this.onSaveExpense }
             onSaveEditedExpense={ this.onSaveEditedExpense }
-            updateExpenseEdited={ updateExpenseEdited }
+            isEditingExpense={ isEditingExpense }
           />
         </form>
       );
@@ -145,11 +100,10 @@ class ExpenseForm extends Component {
 }
 
 const mapStateToProps = ({ wallet }) => ({
-  currencies: wallet.currencies,
   exchange: wallet.exchange,
-  updateExpenseEdited: wallet.updateExpenseEdited,
+  isEditingExpense: wallet.isEditingExpense,
   expenseForEdit: wallet.expenseForEdit,
-  editItemState: wallet.editItemState,
+  hasClickedEdit: wallet.hasClickedEdit,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -164,11 +118,10 @@ ExpenseForm.propTypes = {
   expenseInfo: func.isRequired,
   expenseEdited: func.isRequired,
   changedLocalState: func.isRequired,
-  currencies: PropTypes.arrayOf(string).isRequired,
   exchange: PropTypes.objectOf(PropTypes.objectOf(string)).isRequired,
-  updateExpenseEdited: bool.isRequired,
+  isEditingExpense: bool.isRequired,
   expenseForEdit: PropTypes.objectOf(PropTypes.objectOf(string)).isRequired,
-  editItemState: bool.isRequired,
+  hasClickedEdit: bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);

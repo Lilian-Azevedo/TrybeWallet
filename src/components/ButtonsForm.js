@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 
 export default class ButtonsForm extends Component {
   render() {
-    const { updateExpenseEdited, onSaveExpense, onSaveEditedExpense } = this.props;
+    const { isEditingExpense, onSaveExpense, onSaveEditedExpense } = this.props;
     return (
       <div>
-        { updateExpenseEdited
+        { isEditingExpense
           ? (
             <button
               name="editExpense"
@@ -31,5 +31,5 @@ export default class ButtonsForm extends Component {
 ButtonsForm.propTypes = {
   onSaveExpense: func.isRequired,
   onSaveEditedExpense: func.isRequired,
-  updateExpenseEdited: bool.isRequired,
+  isEditingExpense: bool.isRequired,
 };
