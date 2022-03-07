@@ -1,7 +1,8 @@
 import { bool, func } from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class ButtonsForm extends Component {
+class ButtonsForm extends Component {
   render() {
     const { isEditingExpense, onSaveExpense, onSaveEditedExpense } = this.props;
     return (
@@ -28,8 +29,14 @@ export default class ButtonsForm extends Component {
   }
 }
 
+const mapStateToProps = ({ wallet }) => ({
+  isEditingExpense: wallet.isEditingExpense,
+});
+
 ButtonsForm.propTypes = {
   onSaveExpense: func.isRequired,
   onSaveEditedExpense: func.isRequired,
   isEditingExpense: bool.isRequired,
 };
+
+export default connect(mapStateToProps)(ButtonsForm);

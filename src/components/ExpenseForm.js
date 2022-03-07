@@ -48,7 +48,7 @@ class ExpenseForm extends Component {
 
     render() {
       const { value, description } = this.state;
-      const { isEditingExpense, hasClickedEdit,
+      const { hasClickedEdit,
         expenseForEdit, changedLocalState } = this.props;
 
       if (hasClickedEdit) {
@@ -76,7 +76,7 @@ class ExpenseForm extends Component {
             />
           </label>
           <SelectCompForm handleInput={ this.handleInput } />
-          
+
           <label htmlFor="description">
             Descrição
             <textarea
@@ -92,7 +92,6 @@ class ExpenseForm extends Component {
           <ButtonsForm
             onSaveExpense={ this.onSaveExpense }
             onSaveEditedExpense={ this.onSaveEditedExpense }
-            isEditingExpense={ isEditingExpense }
           />
         </form>
       );
@@ -101,7 +100,6 @@ class ExpenseForm extends Component {
 
 const mapStateToProps = ({ wallet }) => ({
   exchange: wallet.exchange,
-  isEditingExpense: wallet.isEditingExpense,
   expenseForEdit: wallet.expenseForEdit,
   hasClickedEdit: wallet.hasClickedEdit,
 });
@@ -119,7 +117,6 @@ ExpenseForm.propTypes = {
   expenseEdited: func.isRequired,
   changedLocalState: func.isRequired,
   exchange: PropTypes.objectOf(PropTypes.objectOf(string)).isRequired,
-  isEditingExpense: bool.isRequired,
   expenseForEdit: PropTypes.objectOf(PropTypes.objectOf(string)).isRequired,
   hasClickedEdit: bool.isRequired,
 };
