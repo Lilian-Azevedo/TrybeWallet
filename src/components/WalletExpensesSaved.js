@@ -31,7 +31,7 @@ class WalletExpensesSaved extends Component {
                 <td>{tag}</td>
                 <td>{method}</td>
                 <td>{Number(value).toFixed(2)}</td>
-                <td>{exchangeRates[currency].name}</td>
+                <td>{exchangeRates[currency].name.split('/')[0]}</td>
                 <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
                 <td>
                   {(Number(exchangeRates[currency].ask)

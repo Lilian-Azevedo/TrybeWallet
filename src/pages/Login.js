@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { func, string } from 'prop-types';
 import { saveUser } from '../actions';
+import '../styles/login.css';
 
 class Login extends Component {
   state = {

@@ -11,6 +11,7 @@ class SelectCompForm extends Component {
       <>
         <label htmlFor="currency">
           Moeda
+        </label>
           <select
             data-testid="currency-input"
             id="currency"
@@ -22,10 +23,10 @@ class SelectCompForm extends Component {
               <option key={ item } data-testid={ item } value={ item }>{item}</option>
             ))}
           </select>
-        </label>
 
         <label htmlFor="method">
           Método de pagamento
+        </label>
           <select
             data-testid="method-input"
             id="method"
@@ -37,10 +38,10 @@ class SelectCompForm extends Component {
               <option key={ methodItem } value={ methodItem }>{methodItem}</option>
             ))}
           </select>
-        </label>
 
         <label htmlFor="tag">
           Categoria
+        </label>
           <select
             data-testid="tag-input"
             id="tag"
@@ -52,7 +53,6 @@ class SelectCompForm extends Component {
               <option key={ tagItem } value={ tagItem }>{tagItem}</option>
             ))}
           </select>
-        </label>
       </>
     );
   }

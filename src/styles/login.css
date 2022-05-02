@@ -1,0 +1,39 @@
+.page-login {
+  align-items: center;
+  background-image: url('./city-of-gold.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.area-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    box-shadow: 0 0.5em 2em rgb(226, 228, 124);
+    padding: 20px 20px 20px 20px;
+    border-radius: 3%;
+    background-color: #353535;
+  }
+  
+  .area-login input {
+    border-radius: 8px;
+    height: 45px;
+    width: 300px;
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin: 2rem 0 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .area-login button {
+    height: 45px;
+    width: 100px;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: blueviolet;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }

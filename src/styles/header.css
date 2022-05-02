@@ -1,3 +1,8 @@
+.main-area {
+  display: flex;
+  flex-direction: row;
+}
+
 .header {
   align-items: center;
   display: flex;

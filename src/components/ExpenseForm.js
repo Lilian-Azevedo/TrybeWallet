@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addExpense, addEditedExpense, thunkWallet, changeKeyEdit } from '../actions';
 import ButtonsForm from './ButtonsForm';
 import SelectCompForm from './SelectCompForm';
+import '../styles/form.css';
 
 const INITIAL_STATE = {
   value: '',
@@ -65,6 +66,7 @@ class ExpenseForm extends Component {
         <form className="expense-form">
           <label htmlFor="value">
             Valor
+          </label>
             <input
             /* autoComplete="off" */
               name="value"
@@ -74,11 +76,11 @@ class ExpenseForm extends Component {
               value={ value }
               onChange={ this.handleInput }
             />
-          </label>
           <SelectCompForm handleInput={ this.handleInput } />
 
           <label htmlFor="description">
             Descrição
+            </label>
             <textarea
               name="description"
               data-testid="description-input"
@@ -87,7 +89,6 @@ class ExpenseForm extends Component {
               onChange={ this.handleInput }
             /* autoComplete="off" */
             />
-          </label>
 
           <ButtonsForm
             onSaveExpense={ this.onSaveExpense }
