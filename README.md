@@ -28,7 +28,3 @@ npm install
   ```
     cd src/ && npm start
   ```
-
-## OBSERVAÇÕES
-
-A pasta 'services', inserida em SRC, é de propriedade exclusiva da TRYBE. Sendo dada como base para a realização de requisições à API neste projeto.
